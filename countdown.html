@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>7-day Countdown</title>
+<style>
+  html,body{height:100%;margin:0;background:#000;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  .wrap{display:flex;align-items:center;justify-content:center;height:100%;}
+  #timer{font-weight:800;font-size:10vw;letter-spacing:0.02em;text-align:center;}
+  @media (min-width:1200px){#timer{font-size:6rem;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="timer" aria-live="polite">7d 00:00:00</div>
+</div>
+<script>
+  // Start the countdown at exactly 7 days from when this page is opened.
+  const totalMs = 7 * 24 * 60 * 60 * 1000;
+  let endTime = Date.now() + totalMs;
+
+  function updateTimer(){
+    const now = Date.now();
+    let diff = endTime - now;
+    if (diff < 0) diff = 0;
+    const days = Math.floor(diff / (24*60*60*1000));
+    diff -= days * (24*60*60*1000);
+    const hours = Math.floor(diff / (60*60*1000));
+    diff -= hours * (60*60*1000);
+    const minutes = Math.floor(diff / (60*1000));
+    diff -= minutes * (60*1000);
+    const seconds = Math.floor(diff / 1000);
+
+    const two = n => String(n).padStart(2,'0');
+    document.getElementById('timer').textContent = `${days}d ${two(hours)}:${two(minutes)}:${two(seconds)}`;
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+</body>
+</html>
