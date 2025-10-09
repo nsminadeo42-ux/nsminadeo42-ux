@@ -14,15 +14,6 @@
 <div class="wrap">
    <iframe src="https://drive.google.com/file/d/1RuOtOMzxrBQ5mO8s7WziW2eqZIyHK-NP/preview" width="640" height="480" allow="autoplay"></iframe>
 </div>
-<script>
-
-  // When the video finishes playing, go to the countdown page
-  iframe.addEventListener('ended', () => {
-    window.location.href = 'countdown.html';
-  });
-
-  // Note: browsers may block autoplay with sound. This setup expects the user to press play,
-  // or if you want autoplay you can set video.muted = true and call video.play(), but that mutes audio.
-</script>
+<script> document.addEventListener('DOMContentLoaded', () => { // time in milliseconds const WAIT_MS = 55_000; // Redirect after WAIT_MS and replace the history entry so user can't go back setTimeout(() => { window.location.replace('countdown.html'); }, WAIT_MS); }); </script>
 </body>
 </html>
